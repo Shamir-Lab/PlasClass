@@ -14,8 +14,8 @@ source classification-env/bin/activate
 
 To install, download and run setup.py:
 
-    git clone https://github.com/dpellow/plasclass.git
-    cd plasclass
+    git clone https://github.com/Shamir-Lab/PlasClass.git
+    cd PlasClass
     python setup.py install
 
 If not using a virtual environment, it is possible to install as a user without root permissions:
