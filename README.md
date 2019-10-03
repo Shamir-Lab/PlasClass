@@ -6,7 +6,7 @@ For example, it can be used to classify the contigs in a (metagenomic) assembly.
 
 `classification` is written in Python2.7 and requires NumPy and scikit-learn (versions compatible with Python2.7) and their dependencies. These will be installed by the setup.py script.
 
-We recommend using a virtual environment. For example, before running setup.py:
+We recommend using a virtual environment. For example, in Linux, before running setup.py:
 ```
 python -m virtualenv classification-env
 source classification-env/bin/activate
