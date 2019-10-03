@@ -11,6 +11,12 @@ We recommend using a virtual environment. For example, in Linux, before running 
 python -m virtualenv classification-env
 source classification-env/bin/activate
 ```
+In Windows:
+```
+pip install virtualenv
+virtualenv classification-env
+classification-env\Scripts\activate
+```
 
 To install, download and run setup.py:
 
