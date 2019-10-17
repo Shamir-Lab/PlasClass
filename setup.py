@@ -25,5 +25,6 @@ setuptools.setup(
         'scikit-learn<=0.20',
         'joblib',
         'numpy<1.17'],
+    package_data={'plasclass': ['data/*']},    
     include_package_data=True,
 )
