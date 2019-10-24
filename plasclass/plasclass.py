@@ -73,7 +73,7 @@ class plasclass():
 
                 seq_ind += 100000
 
-            # pool.close()
+            pool.close()
             return np.array(results)
 
         else:
