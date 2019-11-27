@@ -41,7 +41,7 @@ def main(args):
     c = plasclass.plasclass(n_procs)
     seq_names = []
     seqs = []
-    print "Reading {} in batches of 100k sequences".format(infile)
+    print("Reading {} in batches of 100k sequences".format(infile))
     i = 0
     fp = open(infile)
     with open(outfile,'w') as o:
@@ -50,26 +50,22 @@ def main(args):
             seqs.append(seq)
             i += 1
             if i % 100000 == 0:
-                print "Read {} sequences".format(i)
+                print("Read {} sequences".format(i))
                 probs = c.classify(seqs)
                 for j,p in enumerate(probs):
                     o.write(seq_names[j] + '\t' + str(p) + '\n')
-                #    o.write('>'+seq_names[j]+ '\n')
-                #    o.write(str(p) + '\n')
                 seq_names = []
                 seqs = []
 
 
         # last bunch of sequences:
-        print "Read {} sequences".format(i)
+        print("Read {} sequences".format(i))
         probs = c.classify(seqs)
         for j,p in enumerate(probs):
             o.write(seq_names[j] + '\t' + str(p) + '\n')
-        #    o.write('>'+seq_names[j]+ '\n')
-        #    o.write(str(p) + '\n')
     fp.close()
-    print "Finished classifying"
-    print "Class scores written in: {}".format(outfile)
+    print("Finished classifying")
+    print("Class scores written in: {}".format(outfile))
 
 if __name__=='__main__':
     args = parse_user_input()

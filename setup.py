@@ -15,16 +15,15 @@ setuptools.setup(
     packages=['plasclass'],
     scripts=['classify_fasta.py'],
     classifiers=[
-        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    requires=['python (<3.0)'],
     install_requires=[
-        'scipy<1.3',
-        'scikit-learn<=0.20',
-        'joblib',
-        'numpy<1.17'],
-    package_data={'plasclass': ['data/*']},    
+        'scipy==1.3.2',
+        'scikit-learn==0.21.3',
+        'joblib==0.14',
+        'numpy==1.17'],
+    package_data={'plasclass': ['data/*']},
     include_package_data=True,
 )
