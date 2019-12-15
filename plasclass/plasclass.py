@@ -6,7 +6,6 @@ import numpy as np
 import os
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
-import itertools
 from joblib import load
 
 import multiprocessing as mp
@@ -15,13 +14,12 @@ from multiprocessing import Manager
 import plasclass.plasclass_utils as utils
 
 class plasclass():
-    def __init__(self,n_procs = 1):
-        self._scales = [1000,10000,100000,500000]
-        self._ks = [3,4,5,6,7]
+    def __init__(self, n_procs = 1, scales = [1000,10000,100000,500000], ks = [3,4,5,6,7]):
+        self._scales = scales
+        self._ks = ks
         self._compute_kmer_inds()
         self._load_classifiers()
         self._n_procs = n_procs
-
 
     def classify(self,seq):
         '''Classify the sequence(s), return the probability of the sequence(s) being a plasmid.
@@ -107,23 +105,6 @@ class plasclass():
         return self.classifiers[scale]['scaler'].transform(freqs)
 
     def _compute_kmer_inds(self):
-        ''' Compute the indeces of each canonical kmer in the kmer count vectors
+        ''' Get the indeces of each canonical kmer in the kmer count vectors
         '''
-
-        self._kmer_inds = {k: {} for k in self._ks}
-        self._kmer_count_lens = {k: 0 for k in self._ks}
-
-        alphabet = 'ACGT'
-        for k in self._ks:
-            all_kmers = [''.join(kmer) for kmer in itertools.product(alphabet,repeat=k)]
-            all_kmers.sort()
-            ind = 0
-            for kmer in all_kmers:
-                bit_mer = utils.mer2bits(kmer)
-                rc_bit_mer = utils.mer2bits(utils.get_rc(kmer))
-                if rc_bit_mer in self._kmer_inds[k]:
-                    self._kmer_inds[k][bit_mer] = self._kmer_inds[k][rc_bit_mer]
-                else:
-                    self._kmer_inds[k][bit_mer] = ind
-                    self._kmer_count_lens[k] += 1
-                    ind += 1
+        self._kmer_inds, self._kmer_count_lens = utils.compute_kmer_inds(self._ks)

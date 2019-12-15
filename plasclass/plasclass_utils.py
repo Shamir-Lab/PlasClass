@@ -4,7 +4,7 @@ complements = {'A':'T', 'C':'G', 'G':'C', 'T':'A'}
 nt_bits = {'A':0,'C':1,'G':2,'T':3}
 
 import numpy as np
-
+import itertools
 
 def readfq(fp): # this is a generator function
     ''' Adapted from https://github.com/lh3/readfq
@@ -130,3 +130,27 @@ def count_kmers(args_array):
         ind += vec_lens[k]
 
     shared_list[ret_ind] = kmer_freqs
+
+
+def compute_kmer_inds(ks):
+    ''' Get the indeces of each canonical kmer in the kmer count vectors
+    '''
+
+    kmer_inds = {k: {} for k in ks}
+    kmer_count_lens = {k: 0 for k in ks}
+
+    alphabet = 'ACGT'
+    for k in ks:
+        all_kmers = [''.join(kmer) for kmer in itertools.product(alphabet,repeat=k)]
+        all_kmers.sort()
+        ind = 0
+        for kmer in all_kmers:
+            bit_mer = mer2bits(kmer)
+            rc_bit_mer = mer2bits(get_rc(kmer))
+            if rc_bit_mer in kmer_inds[k]:
+                kmer_inds[k][bit_mer] = kmer_inds[k][rc_bit_mer]
+            else:
+                kmer_inds[k][bit_mer] = ind
+                kmer_count_lens[k] += 1
+                ind += 1
+    return kmer_inds, kmer_count_lens
