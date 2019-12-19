@@ -25,6 +25,7 @@ def test_fasta_classifier():
     for k,v in gs_dict.items():
         if k not in test_dict or v != test_dict[k]:
             diff_pass = False
+    os.remove(os.path.join(fpath,'test.out'))
     if not diff_pass:
         print('TEST FAILED!')
         exit(-1)
