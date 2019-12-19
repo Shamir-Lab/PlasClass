@@ -29,6 +29,10 @@ It is possible to install as a user without root permissions:
 python setup.py install --user
 ```
 
+After installing, run the tests:
+```
+python test/test.py
+```
 
 <!--- `classification` can also be installed using `pip`. Just do `pip install classification` --->
 
