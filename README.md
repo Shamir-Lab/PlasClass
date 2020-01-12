@@ -4,7 +4,7 @@ For example, it can be used to classify the contigs in a (metagenomic) assembly.
 
 ## Installation
 
-`classification` is written in Python3 and requires NumPy and scikit-learn and their dependencies. These will be installed by the setup.py script.
+`plasclass` is written in Python3 and requires NumPy and scikit-learn and their dependencies. These will be installed by the setup.py script.
 
 We recommend using a virtual environment. For example, in Linux, before running setup.py:
 ```
