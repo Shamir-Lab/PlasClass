@@ -119,7 +119,7 @@ def get_seqs(infile, inds_dict, l):
             frag = seq[start_ind:start_ind+l]
             if len(frag) < l and len(seq) > l:
                 frag += seq[:l-len(frag)]
-                seqs.append(frag)
+            seqs.append(frag)
     fp.close()
     return seqs
 
