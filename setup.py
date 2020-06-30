@@ -23,7 +23,7 @@ setuptools.setup(
         'scipy==1.3.2',
         'scikit-learn==0.21.3',
         'joblib==0.14',
-        'numpy==1.17'],
+        'numpy==1.17.4'],
     package_data={'plasclass': ['data/*']},
     include_package_data=True,
 )
