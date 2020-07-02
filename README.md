@@ -56,7 +56,7 @@ The output file is a tab separated file with each line containing a sequence hea
 The classifier can also be imported and used directly in your own python code. For example, once the `plasclass` module has been installed you can use the following lines in your own code:
 ```
 from plasclass import plasclass
-my_classifier = plasclass()
+my_classifier = plasclass.plasclass()
 my_classifier.classify(seqs)
 ```
 The `plasclass()` constructor takes optional parameters:
