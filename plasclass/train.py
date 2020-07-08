@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 ##
 # Provide code to train new models
 ##
