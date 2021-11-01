@@ -7,6 +7,7 @@ from plasclass import plasclass_utils as utils
 from plasclass import plasclass
 
 import argparse
+import sys
 
 def parse_user_input():
 
@@ -44,10 +45,15 @@ def main(args):
     seqs = []
     print("Reading {} in batches of 100k sequences".format(infile))
     i = 0
+    n_uppers = 0
     fp = open(infile)
     with open(outfile,'w') as o:
         for name, seq, _ in utils.readfq(fp):
             seq_names.append(name)
+            if not seq.isupper():
+                print("WARNING: sequence of {} converted to uppercase".format(name), file=sys.stderr)
+                n_uppers += 1
+                seq = seq.upper()
             seqs.append(seq)
             i += 1
             if i % 100000 == 0:
@@ -65,6 +71,9 @@ def main(args):
         for j,p in enumerate(probs):
             o.write(seq_names[j] + '\t' + str(p) + '\n')
     fp.close()
+
+    if n_uppers > 0:
+        print('WARNING: {} sequences converted to uppercase, which is required for analysis'.format(n_uppers))
     print("Finished classifying")
     print("Class scores written in: {}".format(outfile))
 
