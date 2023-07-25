@@ -20,7 +20,7 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     install_requires=[
-        'scipy==1.3.2',
+        'scipy==1.10.0',
         'scikit-learn==0.21.3',
         'joblib==1.2.0',
         'numpy==1.22.0'],
